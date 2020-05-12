@@ -5,7 +5,7 @@
  * @format
  * @flow strict-local
  */
-
+import '~/config/ReactotronConfig';
 import React from 'react';
 import {
   SafeAreaView,
@@ -15,7 +15,6 @@ import {
   Text,
   StatusBar,
 } from 'react-native';
-
 import {
   Header,
   LearnMoreLinks,
