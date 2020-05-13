@@ -8,11 +8,13 @@ import {Container, Loading} from './styles';
 
 const App = ({navigation}) => {
   useEffect(() => {
+    // eslint-disable-next-line prefer-const
+    let resetNavigation = CommonActions.reset({
+      index: 0,
+      routes: [{name: 'Login'}],
+    });
+
     async function checkLoginStatus() {
-      const resetNavigation = CommonActions.reset({
-        index: 0,
-        routes: [{name: 'Login'}],
-      });
       const user = await currentFirebaseUser();
       try {
         if (user) {
@@ -22,6 +24,7 @@ const App = ({navigation}) => {
               routes: [{name: 'TaskList'}],
             }),
           );
+          return;
         }
         navigation.dispatch(resetNavigation);
       } catch (error) {

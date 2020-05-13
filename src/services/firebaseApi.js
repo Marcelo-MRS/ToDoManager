@@ -41,3 +41,10 @@ export const currentFirebaseUser = () => {
     );
   });
 };
+
+export const writeTaskOnFirebaseAsync = async task => {
+  const user = await currentFirebaseUser();
+  const tasksReference = firebase.database().ref(user.uid);
+  const {key} = tasksReference.child('tasks').push();
+  return await tasksReference.child(`tasks/${key}`).update(task);
+};
