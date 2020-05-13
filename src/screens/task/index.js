@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {View, Alert} from 'react-native';
 
 import {writeTaskOnFirebaseAsync} from '~/services/firebaseApi';
@@ -12,11 +12,21 @@ import {
   Button,
 } from './styles';
 
-const Task = ({navigation}) => {
+const Task = ({navigation, route}) => {
   const [title, setTitle] = useState('');
   const [resume, setResume] = useState('');
   const [priority, setPriority] = useState(true);
   const [isDone, setIsDone] = useState(false);
+
+  useEffect(() => {
+    if (route.params) {
+      const {task} = route.params;
+      setIsDone(task.isDone);
+      setTitle(task.title);
+      setResume(task.resume);
+      setPriority(task.priority);
+    }
+  }, []);
 
   async function saveTaskAsync() {
     const task = {

@@ -1,17 +1,29 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {Alert} from 'react-native';
 
-import {signInOnFirebaseAsync} from '~/services/firebaseApi';
+import {TaskListView} from '~/components/';
+import {readTasksFromFirebaseAsync} from '~/services/firebaseApi';
 
 import {Container, Icon, Img, FloatButton} from './styles';
 
 const ToDoTasks = ({navigation}) => {
+  const [tasks, setTasks] = useState([]);
+
+  function fetchTasks(tarefas) {
+    const tasksToDo = tarefas.filter(t => !t.isDone);
+    setTasks(tasksToDo);
+  }
+
   function goToTask() {
     navigation.navigate('Task');
   }
+  useEffect(() => {
+    readTasksFromFirebaseAsync(fetchTasks);
+  }, []);
 
   return (
     <Container>
+      <TaskListView tasks={tasks} navigation={navigation} />
       <FloatButton onPress={() => goToTask()}>
         <Img />
       </FloatButton>
