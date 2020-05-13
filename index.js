@@ -11,6 +11,7 @@ import Routes from '~/routes/routes';
 
 import '~/config/ReactotronConfig';
 import 'react-native-gesture-handler';
+import {initializeFirebaseApi} from '~/services/firebaseApi';
 
 import {name as appName} from './app.json';
 
@@ -23,4 +24,7 @@ const wrappedRoutes = () => {
     </NavigationContainer>
   );
 };
-AppRegistry.registerComponent(appName, () => wrappedRoutes);
+AppRegistry.registerComponent(appName, () => {
+  initializeFirebaseApi();
+  return wrappedRoutes;
+});

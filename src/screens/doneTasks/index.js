@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {Alert} from 'react-native';
 
-import {createUserOnFirebaseAsync} from '~/services/firebaseApi';
+import {signInOnFirebaseAsync} from '~/services/firebaseApi';
 
 import {
   SafeAreaView,
@@ -10,31 +10,26 @@ import {
   Img,
   BottomView,
   Input,
-  Title,
+  TextContainer,
+  TextRegister,
+  Text,
   Button,
 } from './styles';
 
-const Register = ({navigation}) => {
+const DoneTasks = props => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  async function createUserAsync() {
+  async function signInAsync() {
     try {
-      const user = await createUserOnFirebaseAsync(email, password);
+      const user = await signInOnFirebaseAsync(email, password);
+      // console.tron.log(user.user.email);
       Alert.alert(
-        'User Created',
-        `User ${user.email} has succesfuly been created!`,
-        [
-          {
-            text: 'Ok',
-            onPress: () => {
-              navigation.goBack();
-            },
-          },
-        ],
+        'User Authenticated',
+        `User ${user.user.email} has succesfuly been authenticated!`,
       );
     } catch (error) {
-      Alert.alert('Create User Failed!', error.message);
+      Alert.alert('Login Failed', error.message);
     }
   }
 
@@ -43,25 +38,35 @@ const Register = ({navigation}) => {
       <KeyboardAvoidingView>
         <TopView>
           <Img />
-          <Title>Registering new user</Title>
         </TopView>
         <BottomView>
           <Input
             placeholder="Email"
             keyboardType="email-address"
             autoCapitalize="none"
+            value={email}
             onChangeText={text => setEmail(text)}
           />
           <Input
             placeholder="Password"
             secureTextEntry
+            value={password}
             onChangeText={text => setPassword(text)}
           />
-          <Button title="Register User" onPress={() => createUserAsync()} />
+          <Button title="Sign in" onPress={() => signInAsync()} />
+          <TextContainer>
+            <Text>Not a member? Let's </Text>
+            <TextRegister
+              onPress={() => {
+                props.navigation.navigate('Register');
+              }}>
+              Register
+            </TextRegister>
+          </TextContainer>
         </BottomView>
       </KeyboardAvoidingView>
     </SafeAreaView>
   );
 };
 
-export default Register;
+export default DoneTasks;
