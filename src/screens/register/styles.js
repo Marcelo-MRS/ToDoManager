@@ -28,7 +28,7 @@ export const Img = styled.Image.attrs({source: ToDoList})`
 
 export const Title = styled.Text`
   font-weight: bold;
-  font-size: 20;
+  font-size: 20px;
   padding: 25px;
 `;
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {Alert} from 'react-native';
 
 import {
@@ -8,14 +8,13 @@ import {
   Img,
   BottomView,
   Input,
-  TextContainer,
-  TextRegister,
-  Text,
   Title,
   Button,
 } from './styles';
 
 const Register = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   return (
     <SafeAreaView>
       <KeyboardAvoidingView>
@@ -28,9 +27,19 @@ const Register = () => {
             placeholder="Email"
             keyboardType="email-address"
             autoCapitalize="none"
+            onChangeText={text => setEmail(text)}
           />
-          <Input placeholder="Password" secureTextEntry />
-          <Button title="Register User" onPress={() => Alert.alert('Email')} />
+          <Input
+            placeholder="Password"
+            secureTextEntry
+            onChangeText={text => setPassword(text)}
+          />
+          <Button
+            title="Register User"
+            onPress={() =>
+              Alert.alert(`Email: ${email} \nPassword: ${password}`)
+            }
+          />
         </BottomView>
       </KeyboardAvoidingView>
     </SafeAreaView>

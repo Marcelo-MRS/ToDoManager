@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState, useMemo} from 'react';
 import {Alert} from 'react-native';
 
 import {
@@ -14,7 +14,10 @@ import {
   Button,
 } from './styles';
 
-const Login = () => {
+const Login = props => {
+  const [email, setEmail] = useState(props.email);
+  const [password, setPassword] = useState('');
+
   return (
     <SafeAreaView>
       <KeyboardAvoidingView>
@@ -26,12 +29,29 @@ const Login = () => {
             placeholder="Email"
             keyboardType="email-address"
             autoCapitalize="none"
+            value={email}
+            onChangeText={text => setEmail(text)}
           />
-          <Input placeholder="Password" secureTextEntry />
-          <Button title="Sign in" onPress={() => Alert.alert('Email')} />
+          <Input
+            placeholder="Password"
+            secureTextEntry
+            value={password}
+            onChangeText={text => setPassword(text)}
+          />
+          <Button
+            title="Sign in"
+            onPress={() =>
+              Alert.alert(`Email: ${email} \nPassword: ${password}`)
+            }
+          />
           <TextContainer>
             <Text>Not a member? Let's </Text>
-            <TextRegister>Register</TextRegister>
+            <TextRegister
+              onPress={() => {
+                props.navigation.navigate('Register');
+              }}>
+              Register
+            </TextRegister>
           </TextContainer>
         </BottomView>
       </KeyboardAvoidingView>
