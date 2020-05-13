@@ -1,4 +1,5 @@
 import React from 'react';
+import {Alert} from 'react-native';
 
 import {
   SafeAreaView,
@@ -10,6 +11,7 @@ import {
   TextContainer,
   TextRegister,
   Text,
+  Button,
 } from './styles';
 
 const Login = () => {
@@ -26,6 +28,7 @@ const Login = () => {
             autoCapitalize="none"
           />
           <Input placeholder="Password" secureTextEntry />
+          <Button title="Sign in" onPress={() => Alert.alert('Email')} />
           <TextContainer>
             <Text>Not a member? Let's </Text>
             <TextRegister>Register</TextRegister>

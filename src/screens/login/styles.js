@@ -46,3 +46,4 @@ export const TextRegister = styled.Text`
 export const Text = styled.Text`
   font-weight: normal;
 `;
+export const Button = styled.Button``;

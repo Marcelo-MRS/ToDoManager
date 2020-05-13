@@ -11,38 +11,36 @@ export const KeyboardAvoidingView = styled.KeyboardAvoidingView.attrs({
 })`
   flex: 1;
   flex-direction: column;
+  justify-content: center;
 `;
 
 export const TopView = styled.View`
-  justify-content: center;
   align-items: center;
-  padding: 50px;
+  padding: 25px;
+  flex: 0.2;
+  flex-direction: row;
 `;
 
 export const Img = styled.Image.attrs({source: ToDoList})`
-  width: 200px;
-  height: 200px;
+  width: 50px;
+  height: 50px;
 `;
+
+export const Title = styled.Text`
+  font-weight: bold;
+  font-size: 20;
+  padding: 25px;
+`;
+
 export const BottomView = styled.View`
+  flex: 1;
   flex-direction: column;
   padding-right: 20px;
   padding-left: 20px;
-  justify-content: center;
 `;
 
 export const Input = styled.TextInput`
   margin-bottom: 20px;
 `;
 
-export const TextContainer = styled.View`
-  flex-direction: row;
-  justify-content: center;
-  margin-top: 20px;
-`;
-
-export const TextRegister = styled.Text`
-  font-weight: bold;
-`;
-export const Text = styled.Text`
-  font-weight: normal;
-`;
+export const Button = styled.Button``;
