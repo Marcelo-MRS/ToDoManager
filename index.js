@@ -3,7 +3,7 @@
  */
 
 import React from 'react';
-import {AppRegistry, SafeAreaView} from 'react-native';
+import {AppRegistry, SafeAreaView, YellowBox} from 'react-native';
 
 import {NavigationContainer} from '@react-navigation/native';
 
@@ -15,6 +15,7 @@ import {initializeFirebaseApi} from '~/services/firebaseApi';
 
 import {name as appName} from './app.json';
 
+YellowBox.ignoreWarnings(['Setting a timer']);
 const wrappedRoutes = () => {
   return (
     <NavigationContainer>

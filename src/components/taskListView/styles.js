@@ -1,6 +1,6 @@
 import styled from 'styled-components/native';
 
-export const Container = styled.View`
+export const Container = styled.SafeAreaView`
   flex: 1;
   flex-direction: column;
   padding-right: 10px;
@@ -8,12 +8,12 @@ export const Container = styled.View`
 `;
 
 export const HeaderContainer = styled.View`
-  flex: 1;
+  margin: 25px 0px 15px;
+  /* flex: 1; */
   flex-direction: row;
   align-items: center;
-  background-color: red;
+  background-color: silver;
   border-radius: 25px;
-  margin-top: 10px;
 `;
 
 export const HeaderTagContainer = styled.View`
@@ -36,7 +36,7 @@ export const HeaderText = styled.Text`
 `;
 
 export const ItemContainer = styled.View`
-  flex: 1;
+  /* flex: 1; */
   flex-direction: column;
   background-color: #f3f2f0;
   margin-top: 5px;

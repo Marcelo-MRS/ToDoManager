@@ -9,14 +9,14 @@ import {Container, Icon, Img, FloatButton} from './styles';
 const ToDoTasks = ({navigation}) => {
   const [tasks, setTasks] = useState([]);
 
-  function fetchTasks(tarefas) {
+  const fetchTasks = tarefas => {
     const tasksToDo = tarefas.filter(t => !t.isDone);
     setTasks(tasksToDo);
-  }
+  };
 
-  function goToTask() {
+  const goToTask = () => {
     navigation.navigate('Task');
-  }
+  };
   useEffect(() => {
     readTasksFromFirebaseAsync(fetchTasks);
   }, []);

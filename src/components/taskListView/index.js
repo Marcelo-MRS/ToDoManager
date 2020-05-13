@@ -35,37 +35,37 @@ const TaskListView = ({tasks, navigation}) => {
   function renderItem(itemData) {
     return (
       <Touchable onPress={() => onClickTask(itemData.item)}>
-        <Container>
-          <ItemContainer>
-            <ItemTextTitle>{itemData.item.title}</ItemTextTitle>
-            <ItemText>{itemData.item.resume}</ItemText>
-          </ItemContainer>
-        </Container>
+        <ItemContainer>
+          <ItemTextTitle>{itemData.item.title}</ItemTextTitle>
+          <ItemText>{itemData.item.resume}</ItemText>
+        </ItemContainer>
       </Touchable>
     );
   }
 
   return (
-    <SectionList
-      renderSectionHeader={section => renderSectionHeader(section)}
-      sections={[
-        {
-          data: tasks.filter(data => {
-            return data.priority;
-          }),
-          key: 'hightPriority',
-          title: 'Hight Priority',
-        },
-        {
-          data: tasks.filter(data => {
-            return !data.priority;
-          }),
-          key: 'lowPriority',
-          title: 'Low Priority',
-        },
-      ]}
-      renderItem={data => renderItem(data)}
-    />
+    <Container>
+      <SectionList
+        renderSectionHeader={section => renderSectionHeader(section)}
+        sections={[
+          {
+            data: tasks.filter(data => {
+              return data.priority;
+            }),
+            key: 'hightPriority',
+            title: 'Hight Priority',
+          },
+          {
+            data: tasks.filter(data => {
+              return !data.priority;
+            }),
+            key: 'lowPriority',
+            title: 'Low Priority',
+          },
+        ]}
+        renderItem={data => renderItem(data)}
+      />
+    </Container>
   );
 };
 
